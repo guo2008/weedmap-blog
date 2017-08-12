@@ -10,6 +10,21 @@ function checkuser() {
   }
 }
 
+function checkowner(blogId) {
+  const blog = Blogs.findOne(blogId);
+
+  // Make sure only the task owner can make a task private
+  if (blog.owner !== Meteor.userId()) {
+    throw new Meteor.Error('not-authorized');
+  }
+}
+
+if (Meteor.isServer) {
+  Meteor.publish('blogs', function blogsPublication() {
+    return Blogs.find();
+  });
+}
+
 Meteor.methods({
   'blogs.insert'(title, description) {
     // Make sure the user is logged in before inserting a blog
@@ -27,7 +42,8 @@ Meteor.methods({
     });
   },
   'blogs.remove'(blogId) {
-    checkuser();
+    // Make sure the user is logged in before deleting a blog
+    checkowner(blogId);
     check(blogId, String);
 
     Blogs.remove(blogId);
@@ -35,7 +51,7 @@ Meteor.methods({
   'blogs.update'(blogId, title, description) {
 
     // Make sure the user is logged in before updating a blog
-    checkuser();
+    checkowner(blogId);
 
     check(blogId, String);
     check(title, String);

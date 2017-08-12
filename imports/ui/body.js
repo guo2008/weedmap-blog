@@ -9,20 +9,12 @@ import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  Meteor.subscribe('blogs');
 });
 
 Template.body.helpers({
   blogs() {
-    const instance = Template.instance();
-    // TODO: remove the comments
-/*    if (instance.state.get('hideCompleted')) {
-      // If hide completed is checked, filter tasks
-      return Blogs.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
-    }*/
     // TODO: need pagination
-    if (Meteor.userId()) {
-      return Blogs.find({owner: Meteor.userId()}, { sort: { createdAt: -1 }});
-    }
     return Blogs.find({}, { sort: { createdAt: -1 }});
   },
   blogCount() {
@@ -50,8 +42,4 @@ Template.body.events({
     target.title.value = '';
     target.description.value = '';
   }
-  // TODO: remove comments
-  /*'change .hide-completed input'(event, instance) {
-    instance.state.set('hideCompleted', event.target.checked);
-  },*/
 });

@@ -1,6 +1,6 @@
 <template name="blog">
     <li>
-        {{#if currentUser}}
+        {{#if isOwner}}
             <button class="delete">&times;</button>
         {{/if}}
         <form class="update-blog">
@@ -8,7 +8,7 @@
             <input type="text" name="title" value={{title}} />
             <input type="text" name="description" value={{description}} />
             <span class="text">{{createdAt}}</span>
-            {{#if currentUser}}
+            {{#if isOwner}}
                 <input type="submit" value="Update">
             {{/if}}
         </form>
