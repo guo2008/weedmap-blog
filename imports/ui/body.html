@@ -1,0 +1,23 @@
+<body>
+<div class="container">
+    <header>
+        <h1>Blog List ({{blogCount}})</h1>
+
+        {{> loginButtons}}
+
+        {{#if currentUser}}
+        <form class="new-blog">
+            <input type="text" name="title" placeholder="Type to add Title" />
+            <input type="text" name="description" placeholder="Type to add description" />
+            <input type="submit" value="Add blog">
+        </form>
+        {{/if}}
+    </header>
+
+    <ul>
+        {{#each blogs}}
+        {{> blog}}
+        {{/each}}
+    </ul>
+</div>
+</body>

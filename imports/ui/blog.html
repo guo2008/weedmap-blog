@@ -1,0 +1,16 @@
+<template name="blog">
+    <li>
+        {{#if currentUser}}
+            <button class="delete">&times;</button>
+        {{/if}}
+        <form class="update-blog">
+            <span class="text">{{username}} </span>
+            <input type="text" name="title" value={{title}} />
+            <input type="text" name="description" value={{description}} />
+            <span class="text">{{createdAt}}</span>
+            {{#if currentUser}}
+                <input type="submit" value="Update">
+            {{/if}}
+        </form>
+    </li>
+</template>
