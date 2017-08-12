@@ -10,3 +10,4 @@ TODO List:
   5. Test coverage
   6. Cache
   7. reorganize files
+  8. Code style, eslint/jslint
