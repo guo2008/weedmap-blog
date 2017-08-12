@@ -1,5 +1,5 @@
 {
-  "name": "my_cool_app",
+  "name": "weedmap-blog",
   "private": true,
   "scripts": {
     "start": "meteor run"

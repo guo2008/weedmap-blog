@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Blogs } from '../api/blogs.js';
@@ -14,22 +15,10 @@ Template.blog.events({
     const title = target.title.value;
     const description = target.description.value;
 
-    // Insert a blog into the collection
-    Blogs.update(Meteor.userId(), {
-      $set: {
-        title,
-        description,
-        modifiedAt: new Date(), // current time
-      },
-    });
-  },
-  'click .toggle-checked'() {
-    // Set the checked property to the opposite of its current value
-    Blogs.update(this._id, {
-      $set: { checked: ! this.checked },
-    });
+    // update the blog
+    Meteor.call('blogs.update', this._id, title, description);
   },
   'click .delete'() {
-    Blogs.remove(this._id);
+    Meteor.call('blogs.remove', this._id);
   },
 });

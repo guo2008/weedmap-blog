@@ -44,13 +44,7 @@ Template.body.events({
     const description = target.description.value;
 
     // Insert a blog into the collection
-    Blogs.insert({
-      title,
-      description,
-      createdAt: new Date(), // current time
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
+   Meteor.call('blogs.insert', title, description);
 
     // Clear form
     target.title.value = '';
