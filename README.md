@@ -7,4 +7,6 @@ TODO List:
   2. For CRUD, we may provide better user experience, however now it works;
   3. Security, we only have basic function, still need improvement;
   4. This blog is based on the tutorial https://www.meteor.com/tutorials/blaze/creating-an-app, we will refactor the code after we gain more knowledge about meteor;
-  5. Testing
+  5. Test coverage
+  6. Cache
+  7. reorganize files
